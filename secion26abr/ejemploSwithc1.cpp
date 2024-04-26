@@ -55,7 +55,7 @@ void menu()
         agregarNum(num);
         break;
     case 2:
-        cout << "Sumar: ";
+        cout << "Sumar: " << endl;
         cout << "La suma es " << sumar(suma, pos - 1) << endl;
         break;
     case 3:
