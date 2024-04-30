@@ -1,4 +1,4 @@
-/*Leer cinco numeros y mostrarlos*/
+/*Leer cinco numeros y mostrarlo*/
 #include <iostream>
 
 using namespace std;

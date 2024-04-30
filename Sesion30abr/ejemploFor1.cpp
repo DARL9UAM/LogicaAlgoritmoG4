@@ -1,4 +1,4 @@
-/*Mostrar las vocales*/
+/*Mostrar las vocale*/
 #include <iostream>
 
 using namespace std;
