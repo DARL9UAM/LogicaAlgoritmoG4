@@ -1,4 +1,4 @@
-/*Leer x cantidad de numeros e imprimir
+/*Leer x cantidad de numeros e imprimi
 la suma de dichos numeros*/
 #include <iostream>
 
