@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int main(int argc, char const *argv[])
+main()
 {
     int num, cont = 0;
     int i = 1;
