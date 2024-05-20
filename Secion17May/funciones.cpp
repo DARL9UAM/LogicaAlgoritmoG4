@@ -9,6 +9,7 @@ void addGrade();
 void showGrades();
 void highestGrade();
 void lowestGrade();
+void averageGrade();
 
 int menu(){
     int option;
@@ -40,7 +41,12 @@ void start(){
                 break;
             case 3:
                 highestGrade();
-                system("pause");
+                break;
+            case 4:
+                lowestGrade();
+                break;
+            case 5:
+                averageGrade();
                 break;
             case 6:
                 cout << "Salir" << endl;
@@ -76,17 +82,39 @@ void showGrades(){
 }
 
 void highestGrade(){
-    int highest = grades[0];
-    for (int i = 0; i < position; i++)
+    int hight = grades[0];
+    for (int i = 1; i < position; i++)
     {
-        if (grades[i] > highest )
+        if (grades[i] > hight)
         {
-            highest = grades[i];
+            hight = grades[i];
         }
-        cout << "La nota mas alta es: " << highest << endl;
+        cout << "La nota mas alta es: " << hight << endl;
     }
+    system("pause");
 }
 
-void lowestGrade(){
 
+void lowestGrade(){
+    int lowest = grades[0];
+    for (int i = 0; i < position; i++)
+    {
+        if ( grades[i] < lowest )
+        {
+            lowest = grades[i];
+        }
+        cout << "La nota mas baja es: " << lowest << endl;
+    }
+    system("pause");
+}
+
+void averageGrade(){
+    float sum = 0;
+    for (int i = 0; i < position; i++)
+    {
+        sum += grades[i];
+    }
+    float average = sum / position;
+    cout << "El promedio es: " << average << endl;
+    system("pause");
 }
