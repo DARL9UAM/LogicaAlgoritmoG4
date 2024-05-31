@@ -43,7 +43,7 @@ void menu(){
     int op = 0;
     do
     {
-        system("cls||clear");
+    system("cls||clear");
         cout << "1. Agregar\n";
         cout << "2. Mostrar\n";
         cout << "3. Salir\n";
