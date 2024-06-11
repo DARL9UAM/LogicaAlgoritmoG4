@@ -117,9 +117,9 @@ void pedirDato(){
     cout << "ID: ";
     cin >> city.id;
     cout << "Nombre: ";
-    cin >> city.name;
+    scanf(" %[^\n]", city.name);
     cout << "Descripcion: ";
-    cin >> city.description;
+    scanf(" %[^\n]", city.description);
     addCity(&city);
 }
 
@@ -136,36 +136,31 @@ void mostrarTodo(){
 }
 
 void editar(){
+    CITY city;
     int id;
     cout << "Editar ciudad" << endl;
     cout << "ID de la ciudad que quiere editar: ";
     cin >> id;
-    for (int i = 0; i < pos; i++){
-        if (cities[i].id == id){
-            cout << "Nombre actual: " << cities[i].name << endl;
-            cout << "Descripcion actual: " << cities[i].description << endl;
-            cout << "Nuevo nombre: ";
-            cin >> cities[i].name;
-            cout << "Nueva descripcion: ";
-            cin >> cities[i].description;
-            cout << "Editado con exito" << endl;
-        }
-    }
+    city = findCity(id);
+    cout << "Nombre actual: " << city.name << endl;
+    cout << "Descripcion actual: " << city.description << endl;
+    cout << "Nuevo nombre: ";
+    scanf(" %[^\n]", city.name);
+    cout << "Nueva descripcion: ";
+    scanf(" %[^\n]", city.description);
+    updateCity(&city, id);
+    cout << "Registro actualizado...\n";
 }
 
 void eliminar(){
-    int id;
+    int id = 0;
     cout << "Eliminar ciudad" << endl;
     cout << "ID de la ciudad que quiere eliminar: ";
     cin >> id;
-    for (int i = 0; i < pos; i++){
-        if (cities[i].id == id){
-            for (int j = i; j < pos; j++){
-                cities[j] = cities[j + 1];
-            }
-            cout << "Eliminado con exito" << endl;
-        }
-    }
+
+    destroyCity(id);
+
+    cout << "Eliminada con exito\n";
 }
 
 void buscar(){
@@ -175,7 +170,6 @@ void buscar(){
     cin >> id;
     for (int i = 0; i < pos; i++){
         if (cities[i].id == id){
-            cout << "ID: " << cities[i].id << endl;
             cout << "Nombre: " << cities[i].name << endl;
             cout << "Decripcion: " << cities[i].description << endl;
             cout << "Busqueda completada" << endl;

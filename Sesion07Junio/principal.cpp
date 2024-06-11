@@ -3,6 +3,8 @@
 
 using namespace std;
 
+//llamando las funciones en el main
+
 main()
 {
     principal();
