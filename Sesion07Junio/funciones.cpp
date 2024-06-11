@@ -17,6 +17,9 @@ void destroyCity(int id);
 
 void pedirDato();
 void mostrarTodo();
+void editar();
+void eliminar();
+void buscar();
 int menu();
 void principal();
 
@@ -86,14 +89,23 @@ void principal(){
         case 1:
             pedirDato();
             break;
+        case 2:
+            editar();
+            break;
+        case 3:
+            eliminar();
+            break;
         case 4:
             mostrarTodo();
+            break;
+        case 5:
+            buscar();
             break;
         case 6:
             cout << "Adios tierno...\n";
             break;  
         default:
-        cout << "Deberias de leer más, solo hay seis opciones" << endl;
+        cout << "Deberias de leer mejor, solo hay seis opciones" << endl;
             break;
         }
     } while (op != 6);
@@ -105,9 +117,9 @@ void pedirDato(){
     cout << "ID: ";
     cin >> city.id;
     cout << "Nombre: ";
-    scanf("%[^\n]", city.name);
-    cout << "Descripción: ";
-    scanf("%[^\n]", city.description);
+    cin >> city.name;
+    cout << "Descripcion: ";
+    cin >> city.description;
     addCity(&city);
 }
 
@@ -118,5 +130,55 @@ void mostrarTodo(){
         cout << cities[i].id << endl;
         cout << cities[i].name << endl;
         cout << cities[i].description << endl;
+        cout << "..." << endl;
+    }
+    cout << "estas son todas las ciudades que ha ingresado" << endl;
+}
+
+void editar(){
+    int id;
+    cout << "Editar ciudad" << endl;
+    cout << "ID de la ciudad que quiere editar: ";
+    cin >> id;
+    for (int i = 0; i < pos; i++){
+        if (cities[i].id == id){
+            cout << "Nombre actual: " << cities[i].name << endl;
+            cout << "Descripcion actual: " << cities[i].description << endl;
+            cout << "Nuevo nombre: ";
+            cin >> cities[i].name;
+            cout << "Nueva descripcion: ";
+            cin >> cities[i].description;
+            cout << "Editado con exito" << endl;
+        }
+    }
+}
+
+void eliminar(){
+    int id;
+    cout << "Eliminar ciudad" << endl;
+    cout << "ID de la ciudad que quiere eliminar: ";
+    cin >> id;
+    for (int i = 0; i < pos; i++){
+        if (cities[i].id == id){
+            for (int j = i; j < pos; j++){
+                cities[j] = cities[j + 1];
+            }
+            cout << "Eliminado con exito" << endl;
+        }
+    }
+}
+
+void buscar(){
+    int id;
+    cout << "Buscar ciudad" << endl;
+    cout << "ID de la ciudad que desea buscar: ";
+    cin >> id;
+    for (int i = 0; i < pos; i++){
+        if (cities[i].id == id){
+            cout << "ID: " << cities[i].id << endl;
+            cout << "Nombre: " << cities[i].name << endl;
+            cout << "Decripcion: " << cities[i].description << endl;
+            cout << "Busqueda completada" << endl;
+        }
     }
 }
