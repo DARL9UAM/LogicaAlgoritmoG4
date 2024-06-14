@@ -3,7 +3,7 @@
 
 using namespace std;
 
-//llamando las funciones en el main
+//llamando a funciones en el main
 
 main()
 {

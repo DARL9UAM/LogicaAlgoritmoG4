@@ -7,7 +7,7 @@ using namespace std;
 CITY cities[MAX_REG];
 int pos = 0;
 
-//Funciones
+//Prototipos
 
 void addCity(CITY *city);
 CITY findCity(int id);
@@ -20,8 +20,11 @@ void mostrarTodo();
 void editar();
 void eliminar();
 void buscar();
+void showData(CITY &city);
 int menu();
 void principal();
+
+//Funciones
 
 void addCity(CITY *city){
     cities[pos] = *city;
@@ -116,6 +119,11 @@ void pedirDato(){
     cout << "Datos de la ciudad" << endl;
     cout << "ID: ";
     cin >> city.id;
+     if (findPos(city.id)!=-1)
+    {
+        cout << "Registro ya existe..." << endl;
+        return;
+    }
     cout << "Nombre: ";
     scanf(" %[^\n]", city.name);
     cout << "Descripcion: ";
@@ -124,12 +132,14 @@ void pedirDato(){
 }
 
 void mostrarTodo(){
+     if(pos = 0){
+        cout << "No hay nada que eliminar..." << endl;
+        return;
+    }
     cout << "Mostrar Registros\n";
     for (int i = 0; i < pos; i++)
     {
-        cout << cities[i].id << endl;
-        cout << cities[i].name << endl;
-        cout << cities[i].description << endl;
+        showData(cities[i]);
         cout << "..." << endl;
     }
     cout << "estas son todas las ciudades que ha ingresado" << endl;
@@ -141,12 +151,18 @@ void editar(){
     cout << "Editar ciudad" << endl;
     cout << "ID de la ciudad que quiere editar: ";
     cin >> id;
+    if (findPos(id)==-1)
+    {
+        cout << "Registro no existe..." << endl;
+        return;
+    }
+    
     city = findCity(id);
     cout << "Nombre actual: " << city.name << endl;
     cout << "Descripcion actual: " << city.description << endl;
     cout << "Nuevo nombre: ";
     scanf(" %[^\n]", city.name);
-    cout << "Nueva descripcion: ";
+    cout << "Nueva descripcion: "; 
     scanf(" %[^\n]", city.description);
     updateCity(&city, id);
     cout << "Registro actualizado...\n";
@@ -154,9 +170,17 @@ void editar(){
 
 void eliminar(){
     int id = 0;
+    if(pos = 0){
+        cout << "No hay nada que eliminar..." << endl;
+        return;
+    }
     cout << "Eliminar ciudad" << endl;
     cout << "ID de la ciudad que quiere eliminar: ";
     cin >> id;
+    if (findPos(id)!=-1)
+    {
+        cout << "Registro no existe..." << endl;
+        return;
 
     destroyCity(id);
 
@@ -164,15 +188,25 @@ void eliminar(){
 }
 
 void buscar(){
-    int id;
+    int id = 0;
     cout << "Buscar ciudad" << endl;
     cout << "ID de la ciudad que desea buscar: ";
     cin >> id;
-    for (int i = 0; i < pos; i++){
-        if (cities[i].id == id){
-            cout << "Nombre: " << cities[i].name << endl;
-            cout << "Decripcion: " << cities[i].description << endl;
-            cout << "Busqueda completada" << endl;
-        }
+     if (findPos(id)==-1)
+    {
+        cout << "Registro no existe..." << endl;
+        return;
     }
+    CITY city = findCity(id);
+    int x = findPos(id);
+
+    cout << "\nCiudad #" << x+1 << ":\n";
+    showData(city);
+    
+}
+
+void showData(CITY &city){
+    cout << "ID: " << city.id << endl;
+    cout << "Nombre: " << city.name << endl;
+    cout << "Descripcion: " << city.description << endl;
 }
